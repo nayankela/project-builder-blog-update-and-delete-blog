@@ -16,7 +16,13 @@ public class UserDAO implements UserDaoInterface {
 		int result = 0;
 		try
 		{
-			Connection connection = ConnectionManager.getConnection();
+			Connection connection = null;
+			try {
+				connection = ConnectionManager.getConnection();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// Step 2:Create a statement using connection object
 			PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL);
 			preparedStatement.setString(1,user.getEmail());
@@ -33,7 +39,13 @@ public class UserDAO implements UserDaoInterface {
 	public boolean loginUser(User user) {
 		boolean status = false;
 		try{
-			Connection connection = ConnectionManager.getConnection();
+			Connection connection = null;
+			try {
+				connection = ConnectionManager.getConnection();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 				// Step 2:Create a statement using connection object
 		PreparedStatement preparedStatement = connection.prepareStatement("select * from users where email = ? and password = ? ");
